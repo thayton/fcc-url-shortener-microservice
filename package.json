@@ -1,0 +1,26 @@
+{
+  "name": "fcc-url-shortener-microservice",
+  "version": "1.0.0",
+  "description": "URL Shortener for Free Code Camp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thayton/fcc-url-shortener-microservice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thayton/fcc-url-shortener-microservice/issues"
+  },
+  "homepage": "https://github.com/thayton/fcc-url-shortener-microservice#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongodb": "^3.0.10",
+    "mongoose": "^5.1.5",
+    "url-parse": "^1.4.1",
+    "validator": "^10.3.0"
+  }
+}
