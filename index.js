@@ -4,6 +4,8 @@ const { mongoose } = require('./db/mongoose');
 const port = process.env.PORT || 3000;
 
 const { processRequest } = require('./util');
+const { Url } = require('./models/url');
+
 const express = require('express');
 const app = express();
 
@@ -13,40 +15,13 @@ app.post('/api/shorturl/:route(*)', (req, res) => {
     processRequest(req, res);
 });
 
-/*
-app.post('/api/shorturl/:route(*)', (req, res) => {
-    var route = req.params.route;
-    if (validator.isURL(route)) {
-        let { host } = parse_url(route);
-        
-        dns.lookup(host, (err, addr, family) => {
-            if (err) {
-                return res.send({"error": "invalid URL" });
-            }
-            Url.findOne({ 'original': route }, '-_id original shortened').then((url) => {
-                if (url) {
-                    return res.send(url)
-                } 
-
-                Url.count({}).then((cnt) => {
-                    var url = new Url({
-                        original: route,
-                        shortened: cnt+1
-                    });
-                            
-                    url.save().then((url) => {
-                        res.send(url);
-                    }, (e) => {
-                        res.status(400).send(e);
-                    });
-                });
-            });
-        });
-    } else {
-        res.send({"error": "invalid URL" });
-    }
+app.get('/api/shorturl/urls', (req, res) => {
+    Url.find().then((urls) => {
+        res.send({ urls });
+    }, (e) => {
+        res.status(400).send(e);
+    });
 });
-*/
 
 app.listen(port, () => {
     console.log(`Started on port ${port}`);
