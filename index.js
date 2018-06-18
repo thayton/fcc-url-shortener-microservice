@@ -7,11 +7,13 @@ const { processRequest } = require('./util');
 const { Url } = require('./models/url');
 
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 
+app.use(bodyParser());
 app.use(express.static(__dirname + '/public'));
 
-app.post('/api/shorturl/:route(*)', (req, res) => {
+app.post('/api/shorturl/new', (req, res) => {
     processRequest(req, res);
 });
 
