@@ -12,14 +12,14 @@ const { Url } = require('./models/url');
 // Return shortened "base62" URL
 //
 function processRequest(req, res) {
-    var url = req.params.route;
+    var url = req.body.url;
     validateUrl(url, processValidatedUrl);
 
     // The URL needs to be:
     // - valid syntactically
     // - point to an actual host that we can resolve
     function validateUrl(url, cb) {
-        if (validator.isURL(url)) {
+        if (url && validator.isURL(url)) {
             let { host } = parse_url(url);
         
             dns.lookup(host, (err, addr, family) => {
