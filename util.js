@@ -36,7 +36,7 @@ function processRequest(req, res) {
     
     function processValidatedUrl(isValid, url) {
         if (!isValid) {
-            return res.send({"error": "invalid URL" });
+            return res.status(400).send({"error": "invalid URL" });
         }
 
         shortenUrl(url, returnShortenedUrl);
